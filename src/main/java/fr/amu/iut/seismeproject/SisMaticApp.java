@@ -21,12 +21,11 @@ public class SisMaticApp extends Application {
 
         // Liaison du modèle (Model) et du vue-modèle (ViewModel) à la vue (View)
         SisMaticView view = loader.getController();
-        SisMaticViewModel viewModel = new SisMaticViewModel();
-        view.setViewModel(viewModel);
         SisMaticModel model = new SisMaticModel();
-        viewModel.setModel(model);
+        SisMaticViewModel viewModel = new SisMaticViewModel(model);
+        view.setViewModel(viewModel);
 
-        Scene scene = new Scene(root, 400, 120);
+        Scene scene = new Scene(root, 960, 540);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

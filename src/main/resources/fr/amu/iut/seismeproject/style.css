@@ -1,0 +1,6 @@
+
+#map {
+    height: 600px;
+    /*filter: grayscale(200%) saturate(200%);
+    -webkit-filter: grayscale(200%);  Pour une compatibilité avec certains navigateurs */
+}
