@@ -11,7 +11,7 @@
       <VBox fx:id="menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="menu" BorderPane.alignment="CENTER">
             <Button fx:id="buttonMenu" mnemonicParsing="false" onMousePressed="#showMenu" styleClass="menu">
                <graphic>
-                  <ImageView>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
                      <image>
                         <Image url="@imgMenu/IconMenu.png" />
                      </image>
@@ -20,7 +20,7 @@
             </Button>
             <Button fx:id="buttonFile" mnemonicParsing="false" onMousePressed="#showFile" styleClass="menu">
                <graphic>
-                  <ImageView>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
                      <image>
                         <Image url="@imgMenu/IconFile.png" />
                      </image>
@@ -29,16 +29,16 @@
             </Button>
             <Button fx:id="buttonMap" mnemonicParsing="false" onMousePressed="#showMap" styleClass="menu">
                <graphic>
-                  <ImageView cache="true">
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
                      <image>
                         <Image url="@imgMenu/IconMap.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="buttonDashboard" mnemonicParsing="false" styleClass="menu" onMousePressed="#showDashboard">
+            <Button fx:id="buttonDashboard" mnemonicParsing="false" onMousePressed="#showDashboard" styleClass="menu">
                <graphic>
-                  <ImageView>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
                      <image>
                         <Image url="@imgMenu/IconDashboard.png" />
                      </image>
@@ -52,14 +52,56 @@
    </left>
    <center>
       <AnchorPane>
-         <AnchorPane fx:id="file">
+         <AnchorPane fx:id="file" prefHeight="1080.0" prefWidth="1920.0">
+            <VBox alignment="CENTER" onDragDropped="#dragDropped" onDragExited="#dragExited" onDragOver="#dragOver" spacing="20">
+               <children>
+                  <ImageView fitHeight="250" fitWidth="250" preserveRatio="true" smooth="true">
+                     <image>
+                        <Image url="@imgMenu/importLogo.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="70.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label style="-fx-font-size: 56; -fx-text-fill: #2A3542;" text="Glisser et déposer un fichier CSV" />
+                  <Label style="-fx-font-size: 22; -fx-text-fill: #3F6182;" text="ou" />
+                  <Button fx:id="parcourir" onAction="#importCSV" text="Parcourir">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+               </children>
+            </VBox>
+         </AnchorPane>
+
+         <AnchorPane fx:id="drag" prefHeight="1080.0" prefWidth="1920.0">
             <children>
-               <Label prefHeight="92.0" prefWidth="594.0" text="Glisser-déposer votre fichier ici">
+               <Label text="drag" textFill="RED">
                   <font>
-                     <Font size="42.0" />
-                  </font>
-               </Label>
+                     <Font size="96.0" />
+                  </font></Label>
             </children>
+         </AnchorPane>
+
+         <AnchorPane fx:id="uploadFile" prefHeight="1080.0" prefWidth="1920.0">
+            <VBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="300" fitWidth="300" preserveRatio="true" smooth="true">
+                     <image>
+                        <Image url="@imgMenu/csvLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="fileName" style="-fx-font-size: 30; -fx-text-fill: #2A3542;" text="">
+                     <VBox.margin>
+                        <Insets bottom="100.0" />
+                     </VBox.margin></Label>
+                  <HBox spacing="50">
+                     <children>
+                        <Button onAction="#delFile" styleClass="buttonFile" text="Supprimer" />
+                        <Button onAction="#importCSV" styleClass="buttonFile" text="Modifier" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </AnchorPane>
 
          <AnchorPane fx:id="map">

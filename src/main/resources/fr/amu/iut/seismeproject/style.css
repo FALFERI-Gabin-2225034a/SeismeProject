@@ -1,9 +1,33 @@
 BorderPane {
-    -fx-background-color: #FFFEDC;
+    -fx-background-color: #E9FDFC;
 }
 
 .menu {
-    -fx-background-color: #1C5588;
+    -fx-background-color: #3F6182;
     -fx-font-size: 25px;
-    -fx-text-fill: #FFFEDC;
+    -fx-text-fill: #E9FDFC;
+}
+
+#parcourir, .buttonFile {
+    -fx-background-color: #F88F52;
+    -fx-text-fill: #2A3542;
+    -fx-border-radius:50 50 50 50;
+    -fx-background-radius:50 50 50 50;
+}
+
+#parcourir {
+    -fx-pref-width: 400;
+    -fx-pref-height: 60;
+    -fx-font-size: 48;
+}
+
+.buttonFile {
+    -fx-pref-width: 300;
+    -fx-pref-height: 40;
+    -fx-font-size: 30;
+}
+
+#drag {
+    -fx-background-color: #2A3542;
+    -fx-opacity: 50%;
 }
