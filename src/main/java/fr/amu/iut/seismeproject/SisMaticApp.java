@@ -26,7 +26,7 @@ public class SisMaticApp extends Application {
         SisMaticModel model = new SisMaticModel();
         viewModel.setModel(model);
 
-        Scene scene = new Scene(root, 400, 120);
+        Scene scene = new Scene(root, 960, 540);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

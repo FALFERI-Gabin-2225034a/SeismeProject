@@ -6,8 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +16,12 @@ public class SisMaticView implements Initializable {
     private SisMaticViewModel viewModel;
     @FXML
     private VBox menu;
+    @FXML
+    private AnchorPane file;
+    @FXML
+    private AnchorPane map;
+    @FXML
+    private AnchorPane dashboard;
     @FXML
     private Button buttonMenu;
     @FXML
@@ -44,7 +49,7 @@ public class SisMaticView implements Initializable {
             for (Button button : listButtons)
                 viewModel.transformMenuButton(true, button);
             menu.setAlignment(Pos.TOP_LEFT);
-            menu.setPrefWidth(350);
+            menu.setPrefWidth(300);
         }
         else {
             for (Button button : listButtons)
@@ -54,7 +59,41 @@ public class SisMaticView implements Initializable {
         }
     }
 
+    @FXML
+    private void showFile() {
+        file.setVisible(true);
+        file.setDisable(false);
+        map.setVisible(false);
+        map.setDisable(true);
+        dashboard.setVisible(false);
+        dashboard.setDisable(true);
+    }
+
+    @FXML
+    private void showMap() {
+        file.setVisible(false);
+        file.setDisable(true);
+        map.setVisible(true);
+        map.setDisable(false);
+        dashboard.setVisible(false);
+        dashboard.setDisable(true);
+    }
+
+    @FXML
+    private void showDashboard() {
+        file.setVisible(false);
+        file.setDisable(true);
+        map.setVisible(false);
+        map.setDisable(true);
+        dashboard.setVisible(true);
+        dashboard.setDisable(false);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        map.setVisible(false);
+        map.setDisable(true);
+        dashboard.setVisible(false);
+        dashboard.setDisable(true);
     }
 }
