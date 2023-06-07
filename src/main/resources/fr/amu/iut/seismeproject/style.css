@@ -1,0 +1,9 @@
+BorderPane {
+    -fx-background-color: #FFFEDC;
+}
+
+.menu {
+    -fx-background-color: #1C5588;
+    -fx-font-size: 25px;
+    -fx-text-fill: #FFFEDC;
+}

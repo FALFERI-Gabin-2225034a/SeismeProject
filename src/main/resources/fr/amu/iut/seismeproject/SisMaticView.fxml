@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fr.amu.iut.seismeproject.SisMaticView"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.seismeproject.SisMaticView">
+   <left>
+      <VBox fx:id="menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="menu" BorderPane.alignment="CENTER">
+            <Button fx:id="buttonMenu" mnemonicParsing="false" styleClass="menu" onMousePressed="#showMenu">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@imgMenu/IconMenu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonFile" mnemonicParsing="false" styleClass="menu">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@imgMenu/IconFile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonMap" mnemonicParsing="false" styleClass="menu">
+               <graphic>
+                  <ImageView cache="true">
+                     <image>
+                        <Image url="@imgMenu/IconMap.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonDashboard" mnemonicParsing="false" styleClass="menu">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@imgMenu/IconDashboard.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         <padding>
+            <Insets top="50.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
 
-</AnchorPane>
+   </center>
+</BorderPane>
