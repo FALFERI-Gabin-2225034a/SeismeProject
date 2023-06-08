@@ -94,7 +94,7 @@
                      <VBox.margin>
                         <Insets bottom="100.0" />
                      </VBox.margin></Label>
-                  <HBox spacing="50">
+                  <HBox spacing="100">
                      <children>
                         <Button onAction="#delFile" styleClass="buttonFile" text="Supprimer" />
                         <Button onAction="#importCSV" styleClass="buttonFile" text="Modifier" />
