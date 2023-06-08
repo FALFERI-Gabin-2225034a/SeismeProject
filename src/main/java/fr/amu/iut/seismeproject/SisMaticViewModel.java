@@ -52,7 +52,6 @@ public class SisMaticViewModel {
         try (Reader reader = new FileReader(file);
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
             for (CSVRecord csvRecord : csvParser) {
-                ArrayList<String> line = new ArrayList<>();
                 for (int i = 0 ; i < csvRecord.size() ; i++) {
                     if (isFirstLine) {
                         model.getDataKeys().add(csvRecord.get(i));
@@ -62,9 +61,7 @@ public class SisMaticViewModel {
                         String key = model.getDataKeys().get(i);
                         model.getData().get(key).add(csvRecord.get(i));
                     }
-                    line.add(csvRecord.get(i));
                 }
-                model.getDataInLine().add(line);
                 isFirstLine = false;
             }
 
