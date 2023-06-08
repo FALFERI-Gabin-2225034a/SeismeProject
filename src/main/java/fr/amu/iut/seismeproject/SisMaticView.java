@@ -27,8 +27,11 @@ public class SisMaticView implements Initializable {
     }
 
     private void initMap() {
-        /* Création du point avec latitude et longitude */
+        /* Création du point central sur la france avec latitude et longitude */
         MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
+
+        // MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+        // mapView.addLayer(mapLayer);
 
         /* Zoom de 5 */
         mapView.setZoom(5);
