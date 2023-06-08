@@ -1,5 +1,8 @@
 package fr.amu.iut.seismeproject;
 
+import com.gluonhq.maps.MapLayer;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import javafx.scene.Scene;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -49,7 +52,7 @@ public class SisMaticViewModel {
         try (Reader reader = new FileReader(file);
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
             for (CSVRecord csvRecord : csvParser) {
-                List<String> line = new ArrayList<>();
+                ArrayList<String> line = new ArrayList<>();
                 for (int i = 0 ; i < csvRecord.size() ; i++) {
                     if (isFirstLine) {
                         model.getDataKeys().add(csvRecord.get(i));
@@ -59,7 +62,9 @@ public class SisMaticViewModel {
                         String key = model.getDataKeys().get(i);
                         model.getData().get(key).add(csvRecord.get(i));
                     }
+                    line.add(csvRecord.get(i));
                 }
+                model.getDataInLine().add(line);
                 isFirstLine = false;
             }
 
@@ -102,5 +107,52 @@ public class SisMaticViewModel {
         event.setDropCompleted(success);
         event.consume();
         return success;
+    }
+
+    public ArrayList<Coords> getDataCoords() {
+        ArrayList<Coords> dataCoords = new ArrayList<>();
+        for (int i = 0 ; i < model.getData().get("Latitude en WGS 84").size() ; i++) {
+            if (!model.getData().get("Latitude en WGS 84").get(i).isEmpty()) {
+                double X = Double.parseDouble(model.getData().get("Latitude en WGS 84").get(i));
+                double Y = Double.parseDouble(model.getData().get("Longitude en WGS 84").get(i));
+                dataCoords.add(new Coords(X, Y));
+            }
+            else {
+                dataCoords.add(null);
+            }
+        }
+        return dataCoords;
+    }
+
+    public ArrayList<Double> getDataIntensity() {
+        ArrayList<Double> dataIntensity = new ArrayList<>();
+        for (String intensity : model.getData().get("Intensité épicentrale")) {
+            if (!intensity.isEmpty()) {
+                dataIntensity.add(Double.parseDouble(intensity));
+            }
+            else {
+                dataIntensity.add(null);
+            }
+        }
+        return dataIntensity;
+    }
+
+    public void placeEpicentre(MapView mapView) {
+        ArrayList<Coords> dataCoords = getDataCoords();
+        ArrayList<Double> dataIntensity = getDataIntensity();
+        for (int i = 0 ; i < dataCoords.size() ; i++) {
+            if(dataCoords.get(i) != null) {
+                MapLayer mapLayer = new CustomMarkerLayer(new MapPoint(dataCoords.get(i).getX(), dataCoords.get(i).getY()), dataIntensity.get(i));
+                model.getLayerChildrens().add(mapLayer);
+                mapView.addLayer(mapLayer);
+            }
+        }
+    }
+
+    public void clearMap(MapView mapView) {
+        for (MapLayer mapLayer : model.getLayerChildrens()) {
+            mapView.removeLayer(mapLayer);
+        }
+        model.setLayerChildrens(new ArrayList<>());
     }
 }

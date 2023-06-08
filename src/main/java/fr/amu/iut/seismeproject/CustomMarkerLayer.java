@@ -17,11 +17,32 @@ public class CustomMarkerLayer extends MapLayer {
      * @param mapPoint le point (latitude et longitude) où afficher le cercle
      * @see com.gluonhq.maps.MapPoint
      */
-    public CustomMarkerLayer(MapPoint mapPoint) {
+    public CustomMarkerLayer(MapPoint mapPoint, Double intensity) {
         this.mapPoint = mapPoint;
 
-        /* Cercle rouge de taille 5 */
-        this.circle = new Circle(5, Color.RED);
+        /* Création du Cercle */
+        this.circle = new Circle(10);
+        this.circle.setFill(Color.TRANSPARENT);
+        this.circle.setStrokeWidth(3);
+
+        if (intensity.isNaN() || intensity < 2)
+            this.circle.setStroke(Color.DARKBLUE);
+        else if (intensity < 3)
+            this.circle.setStroke(Color.BLUE);
+        else if (intensity < 4)
+            this.circle.setStroke(Color.CYAN);
+        else if (intensity < 5)
+            this.circle.setStroke(Color.LIGHTGREEN);
+        else if (intensity < 6)
+            this.circle.setStroke(Color.YELLOW);
+        else if (intensity < 7)
+            this.circle.setStroke(Color.ORANGE);
+        else if (intensity < 8)
+            this.circle.setStroke(Color.RED);
+        else if (intensity < 9)
+            this.circle.setStroke(Color.PINK);
+        else
+            this.circle.setStroke(Color.PURPLE);
 
         /* Ajoute le cercle au MapLayer */
         this.getChildren().add(circle);

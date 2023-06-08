@@ -38,9 +38,6 @@ public class SisMaticView implements Initializable {
     private AnchorPane map;
     @FXML
     private MapView mapView;
-
-    private boolean mapIsInit = false;
-
     @FXML
     private AnchorPane dashboard;
     @FXML
@@ -133,6 +130,7 @@ public class SisMaticView implements Initializable {
     private void importCSV() throws IOException {
         if (viewModel.importCSV()) {
             this.showUploadFile();
+            viewModel.placeEpicentre(mapView);
         }
     }
 
@@ -154,6 +152,7 @@ public class SisMaticView implements Initializable {
         viewModel.handleDragDropped(event);
         if(viewModel.handleDragDropped(event)) {
             this.showUploadFile();
+            viewModel.placeEpicentre(mapView);
         }
     }
 
@@ -167,6 +166,8 @@ public class SisMaticView implements Initializable {
         viewModel.getModel().setFileCSV(new File(""));
         viewModel.getModel().setDataKeys(new ArrayList<>());
         viewModel.getModel().setData(new HashMap<>());
+        viewModel.getModel().setDataInLine(new ArrayList<>());
+        viewModel.clearMap(mapView);
     }
     private void showUploadFile() {
         uploadFile.setVisible(true);
@@ -178,9 +179,6 @@ public class SisMaticView implements Initializable {
     private void initMap() {
         /* Création du point central sur la france avec latitude et longitude */
         MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
-
-        // MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-        // mapView.addLayer(mapLayer);
 
         /* Zoom de 5 */
         mapView.setZoom(5);
