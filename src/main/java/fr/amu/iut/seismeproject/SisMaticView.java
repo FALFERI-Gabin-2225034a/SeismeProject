@@ -15,6 +15,9 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import com.gluonhq.maps.MapLayer;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import java.util.ResourceBundle;
 
 public class SisMaticView implements Initializable {
@@ -32,6 +35,11 @@ public class SisMaticView implements Initializable {
     @FXML
     private AnchorPane map;
     @FXML
+    private MapView mapView;
+
+    private boolean mapIsInit = false;
+
+    @FXML
     private AnchorPane dashboard;
     @FXML
     private Button buttonMenu;
@@ -45,6 +53,7 @@ public class SisMaticView implements Initializable {
     public SisMaticView() {
         viewModel = new SisMaticViewModel();
     }
+
     public void setViewModel(SisMaticViewModel viewModel) {
         this.viewModel = viewModel;
     }
@@ -162,6 +171,19 @@ public class SisMaticView implements Initializable {
         file.setDisable(true);
         fileName.setText(viewModel.getModel().getFileCSV().getName());
     }
+    private void initMap() {
+        /* Création du point central sur la france avec latitude et longitude */
+        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
+
+        // MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+        // mapView.addLayer(mapLayer);
+
+        /* Zoom de 5 */
+        mapView.setZoom(5);
+
+        /* Centre la carte sur le point */
+        mapView.flyTo(0, mapPoint, 0.1);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map.setVisible(false);
@@ -171,5 +193,6 @@ public class SisMaticView implements Initializable {
         drag.setVisible(false);
         uploadFile.setVisible(false);
         uploadFile.setDisable(true);
+        initMap();
     }
 }

@@ -18,7 +18,8 @@ public class SisMaticViewModel {
     public SisMaticViewModel() {
         model = new SisMaticModel();
     }
-    public void setModel(SisMaticModel model) {
+
+    public SisMaticViewModel(SisMaticModel model) {
         this.model = model;
     }
 
