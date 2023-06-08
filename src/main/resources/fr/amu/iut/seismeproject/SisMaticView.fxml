@@ -11,8 +11,5 @@
       fx:controller="fr.amu.iut.seismeproject.SisMaticView">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" ></VBox>
-      <StackPane>
-         <WebView fx:id="webView"/>
-      </StackPane>
    </children>
 </HBox>
