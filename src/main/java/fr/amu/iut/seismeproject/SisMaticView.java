@@ -12,8 +12,10 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import com.gluonhq.maps.MapLayer;
 import com.gluonhq.maps.MapPoint;
@@ -128,7 +130,7 @@ public class SisMaticView implements Initializable {
     }
 
     @FXML
-    private void importCSV() {
+    private void importCSV() throws IOException {
         if (viewModel.importCSV()) {
             this.showUploadFile();
         }
@@ -147,7 +149,7 @@ public class SisMaticView implements Initializable {
     }
 
     @FXML
-    private void dragDropped(DragEvent event) {
+    private void dragDropped(DragEvent event) throws IOException {
         //drag.setVisible(false);
         viewModel.handleDragDropped(event);
         if(viewModel.handleDragDropped(event)) {
@@ -163,6 +165,8 @@ public class SisMaticView implements Initializable {
         file.setDisable(false);
         fileName.setText("");
         viewModel.getModel().setFileCSV(new File(""));
+        viewModel.getModel().setDataKeys(new ArrayList<>());
+        viewModel.getModel().setData(new HashMap<>());
     }
     private void showUploadFile() {
         uploadFile.setVisible(true);

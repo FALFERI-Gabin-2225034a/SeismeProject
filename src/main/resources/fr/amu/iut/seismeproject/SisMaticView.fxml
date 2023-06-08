@@ -84,7 +84,7 @@
          </AnchorPane>
 
          <AnchorPane fx:id="uploadFile">
-            <VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0">
+            <VBox alignment="CENTER">
                <children>
                   <ImageView fitHeight="300" fitWidth="300" preserveRatio="true" smooth="true">
                      <image>
