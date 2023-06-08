@@ -1,5 +1,8 @@
 package fr.amu.iut.seismeproject;
 
+import com.gluonhq.maps.MapLayer;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +16,7 @@ import java.util.ResourceBundle;
 public class SisMaticView implements Initializable {
     private SisMaticViewModel viewModel;
     @FXML
-    private WebView webView;
+    private MapView mapView;
 
     public SisMaticView() {
         viewModel = new SisMaticViewModel();
@@ -23,8 +26,18 @@ public class SisMaticView implements Initializable {
         this.viewModel = viewModel;
     }
 
+    private void initMap() {
+        /* Création du point avec latitude et longitude */
+        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
+
+        /* Zoom de 5 */
+        mapView.setZoom(5);
+
+        /* Centre la carte sur le point */
+        mapView.flyTo(0, mapPoint, 0.1);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        viewModel.createWebView(webView);
+        initMap();
     }
 }
