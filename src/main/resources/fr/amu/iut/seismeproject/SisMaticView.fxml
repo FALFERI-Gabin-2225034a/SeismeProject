@@ -2,12 +2,13 @@
 
 <?import com.gluonhq.maps.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.seismeproject.SisMaticView">
+<BorderPane prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.seismeproject.SisMaticView">
    <left>
       <VBox fx:id="menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="menu" BorderPane.alignment="CENTER">
             <Button fx:id="buttonMenu" mnemonicParsing="false" onMousePressed="#showMenu" styleClass="menu">
@@ -53,7 +54,7 @@
    </left>
    <center>
       <AnchorPane>
-         <AnchorPane fx:id="file">
+         <AnchorPane fx:id="file" visible="false">
             <VBox alignment="CENTER" layoutX="-1.0" onDragDropped="#dragDropped" onDragExited="#dragExited" onDragOver="#dragOver" spacing="20">
                <children>
                   <ImageView fitHeight="250" fitWidth="250" preserveRatio="true" smooth="true">
@@ -74,7 +75,7 @@
             </VBox>
          </AnchorPane>
 
-         <AnchorPane fx:id="drag">
+         <AnchorPane fx:id="drag" visible="false">
             <children>
                <Label text="drag" textFill="RED">
                   <font>
@@ -83,7 +84,7 @@
             </children>
          </AnchorPane>
 
-         <AnchorPane fx:id="uploadFile">
+         <AnchorPane fx:id="uploadFile" visible="false">
             <VBox alignment="CENTER">
                <children>
                   <ImageView fitHeight="300" fitWidth="300" preserveRatio="true" smooth="true">
@@ -105,16 +106,63 @@
             </VBox>
          </AnchorPane>
 
-         <AnchorPane fx:id="map">
+         <AnchorPane fx:id="map" visible="false">
             <VBox prefHeight="1080.0" prefWidth="1920.0">
                <children>
                   <MapView fx:id="mapView" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </AnchorPane>
-
          <AnchorPane fx:id="dashboard">
+            <VBox alignment="CENTER" prefHeight="570.0" prefWidth="563.0" spacing="20">
+               <Label style="-fx-font-size: 24; -fx-font-weight: bold;">
+                  <graphic>
+                     <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                       <items>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                       </items>
+                     </SplitPane>
+                  </graphic></Label>
+               <StackedBarChart prefHeight="291.0" prefWidth="545.0" title="Magnitude par Seisme">
+                 <xAxis>
+                   <CategoryAxis prefHeight="11.0" prefWidth="570.0" side="BOTTOM" />
+                 </xAxis>
+                 <yAxis>
+                   <NumberAxis side="LEFT" />
+                 </yAxis>
+               </StackedBarChart>
+               <LineChart prefHeight="267.0" prefWidth="662.0" title="Evolution dans le temps">
+                 <xAxis>
+                   <CategoryAxis side="BOTTOM" />
+                 </xAxis>
+                 <yAxis>
+                   <NumberAxis side="LEFT" />
+                 </yAxis>
+               </LineChart>
+               <GridPane hgap="10" vgap="10">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+
+                  <Label GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <Label fx:id="registeredUsersLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                  <Label GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                  <Label fx:id="pendingOrdersLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                  <Label GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                  <Label fx:id="totalRevenueLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </GridPane>
+            </VBox>
          </AnchorPane>
+
       </AnchorPane>
    </center>
 </BorderPane>
