@@ -208,4 +208,6 @@ public class SisMaticView implements Initializable {
         uploadFile.setDisable(true);
         initMap();
     }
+
+
 }
