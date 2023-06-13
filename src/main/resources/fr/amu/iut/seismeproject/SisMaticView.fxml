@@ -120,45 +120,62 @@
 
          <AnchorPane fx:id="dashboard" styleClass="dashboard">
             <VBox alignment="CENTER" prefHeight="800.0" prefWidth="1500.0" spacing="20">
-               <LineChart title="Evolution dans le temps" styleClass="chart-title" prefHeight="300.0" prefWidth="600.0">
-                  <xAxis>
-                     <CategoryAxis side="BOTTOM" />
-                  </xAxis>
-                  <yAxis>
-                     <NumberAxis side="LEFT" />
-                  </yAxis>
-               </LineChart>
-               <StackedBarChart title="Magnitude des Séismes" styleClass="chart-title" prefHeight="300.0" prefWidth="600.0">
-                  <xAxis>
-                     <CategoryAxis side="BOTTOM" />
-                  </xAxis>
-                  <yAxis>
-                     <NumberAxis side="LEFT" />
-                  </yAxis>
-               </StackedBarChart>
+               <StackPane>
+                  <Rectangle width="1500" height="250" arcHeight="60" arcWidth="60" fill="lightgrey" />
+                  <LineChart title="Evolution dans le temps" styleClass="chart-title" prefHeight="300.0" prefWidth="600.0">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </LineChart>
+               </StackPane>
+               <StackPane>
+                  <Rectangle width="1500" height="250" arcHeight="60" arcWidth="60" fill="lightgrey" />
+                  <StackedBarChart title="Magnitude des Séismes" styleClass="chart-title" prefHeight="300.0" prefWidth="600.0">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </StackedBarChart>
+               </StackPane>
                <HBox alignment="CENTER" spacing="20">
-                  <BarChart title="Plus Gros Séisme" styleClass="chart-title" prefHeight="300.0" prefWidth="200.0">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </BarChart>
-                  <BarChart title="Plus Petit Séisme" styleClass="chart-title" prefHeight="300.0" prefWidth="200.0">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </BarChart>
+                  <StackPane>
+                     <Rectangle width="400" height="300" arcHeight="60" arcWidth="60" fill="lightgrey" />
+                     <BarChart fx:id="barchart" title="Plus Gros Séisme" styleClass="chart-title" prefHeight="300.0" prefWidth="200.0">
+                        <xAxis>
+                           <CategoryAxis side="BOTTOM" />
+                        </xAxis>
+                        <yAxis>
+                           <NumberAxis side="LEFT" />
+                        </yAxis>
+                     </BarChart>
+                     <StackPane.margin>
+                        <Insets left="50.0" />
+                     </StackPane.margin>
+                  </StackPane>
+                  <StackPane>
+                     <Rectangle width="400" height="300" arcHeight="60" arcWidth="60" fill="lightgrey" />
+                     <BarChart title="Plus Petit Séisme" styleClass="chart-title" prefHeight="300.0" prefWidth="200.0">
+                        <xAxis>
+                           <CategoryAxis side="BOTTOM" />
+                        </xAxis>
+                        <yAxis>
+                           <NumberAxis side="LEFT" />
+                        </yAxis>
+                     </BarChart>
+                     <StackPane.margin>
+                        <Insets left="50.0" />
+                     </StackPane.margin>
+                  </StackPane>
                </HBox>
                <Label fx:id="seismesLabel" styleClass="label-title" />
             </VBox>
          </AnchorPane>
-
-
       </AnchorPane>
    </center>
 </BorderPane>
+

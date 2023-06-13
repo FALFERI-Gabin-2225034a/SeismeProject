@@ -5,11 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,15 +17,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import com.gluonhq.maps.MapLayer;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
-import java.util.ResourceBundle;
-
-import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 public class SisMaticView implements Initializable {
     private SisMaticViewModel viewModel;
@@ -60,7 +56,6 @@ public class SisMaticView implements Initializable {
     @FXML
     private Label totalRevenueLabel;
 
-
     public SisMaticView() {
         viewModel = new SisMaticViewModel();
     }
@@ -76,13 +71,12 @@ public class SisMaticView implements Initializable {
         listButtons.add(buttonFile);
         listButtons.add(buttonMap);
         listButtons.add(buttonDashboard);
-        if (buttonMenu.getText() == "") {
+        if (buttonMenu.getText().isEmpty()) {
             for (Button button : listButtons)
                 viewModel.transformMenuButton(true, button);
             menu.setAlignment(Pos.TOP_LEFT);
             menu.setPrefWidth(300);
-        }
-        else {
+        } else {
             for (Button button : listButtons)
                 viewModel.transformMenuButton(false, button);
             menu.setAlignment(Pos.TOP_CENTER);
@@ -92,11 +86,10 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showFile() {
-        if (viewModel.getModel().getFileCSV().getName() == "") {
+        if (viewModel.getModel().getFileCSV().getName().isEmpty()) {
             file.setVisible(true);
             file.setDisable(false);
-        }
-        else {
+        } else {
             uploadFile.setVisible(true);
             uploadFile.setDisable(false);
         }
@@ -108,11 +101,10 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showMap() {
-        if (viewModel.getModel().getFileCSV().getName() == "") {
+        if (viewModel.getModel().getFileCSV().getName().isEmpty()) {
             file.setVisible(false);
             file.setDisable(true);
-        }
-        else {
+        } else {
             uploadFile.setVisible(false);
             uploadFile.setDisable(true);
         }
@@ -124,11 +116,10 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showDashboard() {
-        if (viewModel.getModel().getFileCSV().getName() == "") {
+        if (viewModel.getModel().getFileCSV().getName().isEmpty()) {
             file.setVisible(false);
             file.setDisable(true);
-        }
-        else {
+        } else {
             uploadFile.setVisible(false);
             uploadFile.setDisable(true);
         }
@@ -143,28 +134,49 @@ public class SisMaticView implements Initializable {
         if (viewModel.importCSV()) {
             this.showUploadFile();
             viewModel.placeEpicentre(mapView);
+
+            // Display the largest earthquake in the "Largest Earthquake" graph
+            viewModel.showLargestEarthquake();
+
+            // Display the smallest earthquake in the "Smallest Earthquake" graph
+            viewModel.showSmallestEarthquake();
+
+            // Display the time evolution in the "Time Evolution" graph
+            viewModel.showTimeEvolution();
+
+            // Display the magnitude distribution of earthquakes in the "Magnitude Distribution" graph
+            viewModel.showMagnitudeDistribution();
         }
     }
 
     @FXML
     private void dragOver(DragEvent event) {
-        //drag.setVisible(true);
         viewModel.handleDragOver(event);
     }
 
     @FXML
     private void dragExited(DragEvent event) {
-        //drag.setVisible(false);
         event.consume();
     }
 
     @FXML
     private void dragDropped(DragEvent event) throws IOException {
-        //drag.setVisible(false);
         viewModel.handleDragDropped(event);
-        if(viewModel.handleDragDropped(event)) {
+        if (viewModel.handleDragDropped(event)) {
             this.showUploadFile();
             viewModel.placeEpicentre(mapView);
+
+            // Display the largest earthquake in the "Largest Earthquake" graph
+            viewModel.showLargestEarthquake();
+
+            // Display the smallest earthquake in the "Smallest Earthquake" graph
+            viewModel.showSmallestEarthquake();
+
+            // Display the time evolution in the "Time Evolution" graph
+            viewModel.showTimeEvolution();
+
+            // Display the magnitude distribution of earthquakes in the "Magnitude Distribution" graph
+            viewModel.showMagnitudeDistribution();
         }
     }
 
@@ -180,6 +192,7 @@ public class SisMaticView implements Initializable {
         viewModel.getModel().setData(new HashMap<>());
         viewModel.clearMap(mapView);
     }
+
     private void showUploadFile() {
         uploadFile.setVisible(true);
         uploadFile.setDisable(false);
@@ -187,16 +200,18 @@ public class SisMaticView implements Initializable {
         file.setDisable(true);
         fileName.setText(viewModel.getModel().getFileCSV().getName());
     }
+
     private void initMap() {
-        /* Création du point central sur la france avec latitude et longitude */
+        /* Create the central point in France with latitude and longitude */
         MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
 
-        /* Zoom de 5 */
+        /* Set zoom level to 5 */
         mapView.setZoom(5);
 
-        /* Centre la carte sur le point */
+        /* Center the map on the point */
         mapView.flyTo(0, mapPoint, 0.1);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map.setVisible(false);
@@ -208,6 +223,4 @@ public class SisMaticView implements Initializable {
         uploadFile.setDisable(true);
         initMap();
     }
-
-
 }
