@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
-
 public class SisMaticApp extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -25,7 +23,8 @@ public class SisMaticApp extends Application {
         System.setProperty("http.agent", "Gluon Mobile/1.0.3");
 
         primaryStage.setTitle("SisMatic");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SisMaticView.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("SisMaticView.fxml"));
         Parent root = loader.load();
 
         // Liaison du modèle (Model) et du vue-modèle (ViewModel) à la vue (View)

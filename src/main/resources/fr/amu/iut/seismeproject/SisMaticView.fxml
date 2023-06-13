@@ -111,6 +111,9 @@
          </AnchorPane>
 
          <AnchorPane fx:id="map" visible="false">
+            <VBox prefHeight="1080" prefWidth="960">
+
+            </VBox>
             <VBox prefHeight="1080.0" prefWidth="1920.0">
                <children>
                   <MapView fx:id="mapView" VBox.vgrow="ALWAYS" />
