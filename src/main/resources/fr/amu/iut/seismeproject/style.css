@@ -11,8 +11,8 @@ BorderPane {
 #parcourir, .buttonFile {
     -fx-background-color: #F88F52;
     -fx-text-fill: #2A3542;
-    -fx-border-radius:50 50 50 50;
-    -fx-background-radius:50 50 50 50;
+    -fx-border-radius: 50 50 50 50;
+    -fx-background-radius: 50 50 50 50;
 }
 
 #parcourir {
@@ -31,3 +31,52 @@ BorderPane {
     -fx-background-color: #2A3542;
     -fx-opacity: 50%;
 }
+
+#dashboard {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-font-size: 0;
+}
+
+.menu .button:selected,
+.menu .button:pressed {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
+
+.chart-title {
+    -fx-font-size: 20px;
+    -fx-text-fill: #2A3542;
+}
+
+.label-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.chart-plot-background {
+    -fx-background-color: #F0F0F0;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #CCCCCC;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #CCCCCC;
+}
+
+.chart-title {
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+.menu {
+    -fx-background-color: linear-gradient(to bottom, cyan, blue);
+}
+
+
+
+
+
+

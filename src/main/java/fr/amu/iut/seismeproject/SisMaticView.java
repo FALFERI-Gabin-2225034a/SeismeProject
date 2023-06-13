@@ -22,6 +22,11 @@ import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import java.util.ResourceBundle;
 
+import javafx.animation.TranslateTransition;
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
 public class SisMaticView implements Initializable {
     private SisMaticViewModel viewModel;
     @FXML
@@ -48,6 +53,13 @@ public class SisMaticView implements Initializable {
     private Button buttonMap;
     @FXML
     private Button buttonDashboard;
+    @FXML
+    private Label registeredUsersLabel;
+    @FXML
+    private Label pendingOrdersLabel;
+    @FXML
+    private Label totalRevenueLabel;
+
 
     public SisMaticView() {
         viewModel = new SisMaticViewModel();
@@ -166,7 +178,6 @@ public class SisMaticView implements Initializable {
         viewModel.getModel().setFileCSV(new File(""));
         viewModel.getModel().setDataKeys(new ArrayList<>());
         viewModel.getModel().setData(new HashMap<>());
-        viewModel.getModel().setDataInLine(new ArrayList<>());
         viewModel.clearMap(mapView);
     }
     private void showUploadFile() {
@@ -197,4 +208,6 @@ public class SisMaticView implements Initializable {
         uploadFile.setDisable(true);
         initMap();
     }
+
+
 }
