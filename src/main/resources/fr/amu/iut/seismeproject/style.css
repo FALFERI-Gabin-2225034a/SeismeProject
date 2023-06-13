@@ -38,12 +38,6 @@ BorderPane {
     -fx-font-size: 0;
 }
 
-.menu .button:selected,
-.menu .button:pressed {
-    -fx-border-color: black;
-    -fx-border-width: 2px;
-}
-
 .chart-title {
     -fx-font-size: 20px;
     -fx-text-fill: #2A3542;
@@ -69,10 +63,6 @@ BorderPane {
 .chart-title {
     -fx-font-size: 20px;
     -fx-text-fill: black;
-}
-
-.menu {
-    -fx-background-color: linear-gradient(to bottom, cyan, blue);
 }
 
 

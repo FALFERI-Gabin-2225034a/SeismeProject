@@ -12,42 +12,42 @@
 <BorderPane prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.seismeproject.SisMaticView">
    <left>
       <VBox fx:id="menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="menu" BorderPane.alignment="CENTER">
-         <Button fx:id="buttonMenu" mnemonicParsing="false" onMousePressed="#showMenu" styleClass="menu buttonMenu" style="-fx-background-color: lightblue; -fx-text-fill: white;">
-            <graphic>
-               <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                  <image>
-                     <Image url="@imgMenu/IconMenu.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
-         <Button fx:id="buttonFile" mnemonicParsing="false" onMousePressed="#showFile" styleClass="menu buttonFile" style="-fx-background-color: lightblue; -fx-text-fill: white;">
-            <graphic>
-               <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                  <image>
-                     <Image url="@imgMenu/IconFile.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
-         <Button fx:id="buttonMap" mnemonicParsing="false" onMousePressed="#showMap" styleClass="menu buttonMap" style="-fx-background-color: lightblue; -fx-text-fill: white;">
-            <graphic>
-               <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                  <image>
-                     <Image url="@imgMenu/IconMap.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
-         <Button fx:id="buttonDashboard" mnemonicParsing="false" onMousePressed="#showDashboard" styleClass="menu buttonDashboard" style="-fx-background-color: lightblue; -fx-text-fill: white;">
-            <graphic>
-               <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                  <image>
-                     <Image url="@imgMenu/IconDashboard.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
+            <Button fx:id="buttonMenu" mnemonicParsing="false" onMousePressed="#showMenu" styleClass="menu">
+               <graphic>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                     <image>
+                        <Image url="@imgMenu/IconMenu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonFile" mnemonicParsing="false" onMousePressed="#showFile" styleClass="menu">
+               <graphic>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                     <image>
+                        <Image url="@imgMenu/IconFile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonMap" mnemonicParsing="false" onMousePressed="#showMap" styleClass="menu">
+               <graphic>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                     <image>
+                        <Image url="@imgMenu/IconMap.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonDashboard" mnemonicParsing="false" onMousePressed="#showDashboard" styleClass="menu">
+               <graphic>
+                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                     <image>
+                        <Image url="@imgMenu/IconDashboard.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          <padding>
             <Insets top="50.0" />
          </padding>
@@ -55,7 +55,7 @@
    </left>
    <center>
       <AnchorPane>
-         <AnchorPane fx:id="file" visible="false">
+         <AnchorPane fx:id="file">
             <VBox alignment="CENTER" layoutX="-1.0" onDragDropped="#dragDropped" onDragExited="#dragExited" onDragOver="#dragOver" spacing="20">
                <children>
                   <ImageView fitHeight="250" fitWidth="250" preserveRatio="true" smooth="true">
