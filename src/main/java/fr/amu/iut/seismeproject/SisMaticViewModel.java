@@ -3,6 +3,7 @@ package fr.amu.iut.seismeproject;
 import com.gluonhq.maps.MapLayer;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -41,10 +42,22 @@ public class SisMaticViewModel {
     }
 
     public void transformMenuButton(boolean isVoid, Button button) {
-        if (isVoid)
+        if (isVoid) {
             button.setText("\t" + button.getId().substring(6));
-        else
+            button.setPrefWidth(300);
+            button.setAlignment(Pos.CENTER_LEFT);
+        }
+        else {
             button.setText("");
+            button.setPrefWidth(100);
+            button.setAlignment(Pos.CENTER);
+        }
+    }
+
+    public void changeColorButton(ArrayList<Button> listButtons, Button buttonSelect) {
+        for (Button button : listButtons)
+            button.setStyle("-fx-background-color: #3F6182;");
+        buttonSelect.setStyle("-fx-background-color: #9EC8DB;");
     }
 
     public void initData(File file) throws IOException {

@@ -49,6 +49,8 @@ public class SisMaticView implements Initializable {
     @FXML
     private Button buttonDashboard;
 
+    private ArrayList<Button> listButtons;
+
     public SisMaticView() {
         viewModel = new SisMaticViewModel();
     }
@@ -59,11 +61,7 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showMenu() {
-        ArrayList<Button> listButtons = new ArrayList<>();
-        listButtons.add(buttonMenu);
-        listButtons.add(buttonFile);
-        listButtons.add(buttonMap);
-        listButtons.add(buttonDashboard);
+        viewModel.changeColorButton(listButtons, buttonMenu);
         if (buttonMenu.getText() == "") {
             for (Button button : listButtons)
                 viewModel.transformMenuButton(true, button);
@@ -80,6 +78,7 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showFile() {
+        viewModel.changeColorButton(listButtons, buttonFile);
         if (viewModel.getModel().getFileCSV().getName() == "") {
             file.setVisible(true);
             file.setDisable(false);
@@ -96,6 +95,7 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showMap() {
+        viewModel.changeColorButton(listButtons, buttonMap);
         if (viewModel.getModel().getFileCSV().getName() == "") {
             file.setVisible(false);
             file.setDisable(true);
@@ -112,6 +112,7 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void showDashboard() {
+        viewModel.changeColorButton(listButtons, buttonDashboard);
         if (viewModel.getModel().getFileCSV().getName() == "") {
             file.setVisible(false);
             file.setDisable(true);
@@ -166,7 +167,6 @@ public class SisMaticView implements Initializable {
         viewModel.getModel().setFileCSV(new File(""));
         viewModel.getModel().setDataKeys(new ArrayList<>());
         viewModel.getModel().setData(new HashMap<>());
-        viewModel.getModel().setDataInLine(new ArrayList<>());
         viewModel.clearMap(mapView);
     }
     private void showUploadFile() {
@@ -188,6 +188,11 @@ public class SisMaticView implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        listButtons = new ArrayList<>();
+        listButtons.add(buttonMenu);
+        listButtons.add(buttonFile);
+        listButtons.add(buttonMap);
+        listButtons.add(buttonDashboard);
         map.setVisible(false);
         map.setDisable(true);
         dashboard.setVisible(false);
