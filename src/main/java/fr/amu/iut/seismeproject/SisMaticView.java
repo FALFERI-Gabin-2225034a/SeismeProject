@@ -205,6 +205,8 @@ public class SisMaticView implements Initializable {
         listButtons.add(buttonFile);
         listButtons.add(buttonMap);
         listButtons.add(buttonDashboard);
+        for (Button button : listButtons)
+            button.setPrefWidth(100);
         map.setVisible(false);
         map.setDisable(true);
         dashboard.setVisible(false);
