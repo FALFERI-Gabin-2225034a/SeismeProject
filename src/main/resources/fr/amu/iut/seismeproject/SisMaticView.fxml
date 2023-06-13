@@ -2,50 +2,52 @@
 
 <?import com.gluonhq.maps.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.seismeproject.SisMaticView">
+<BorderPane prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.seismeproject.SisMaticView">
    <left>
       <VBox fx:id="menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="menu" BorderPane.alignment="CENTER">
-            <Button fx:id="buttonMenu" mnemonicParsing="false" onMousePressed="#showMenu" styleClass="menu">
-               <graphic>
-                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                     <image>
-                        <Image url="@imgMenu/IconMenu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="buttonFile" mnemonicParsing="false" onMousePressed="#showFile" styleClass="menu">
-               <graphic>
-                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                     <image>
-                        <Image url="@imgMenu/IconFile.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="buttonMap" mnemonicParsing="false" onMousePressed="#showMap" styleClass="menu">
-               <graphic>
-                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                     <image>
-                        <Image url="@imgMenu/IconMap.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="buttonDashboard" mnemonicParsing="false" onMousePressed="#showDashboard" styleClass="menu">
-               <graphic>
-                  <ImageView fitHeight="50" fitWidth="50" smooth="true">
-                     <image>
-                        <Image url="@imgMenu/IconDashboard.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+         <Button fx:id="buttonMenu" mnemonicParsing="false" onMousePressed="#showMenu" styleClass="menu buttonMenu" style="-fx-background-color: lightblue; -fx-text-fill: white;">
+            <graphic>
+               <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                  <image>
+                     <Image url="@imgMenu/IconMenu.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="buttonFile" mnemonicParsing="false" onMousePressed="#showFile" styleClass="menu buttonFile" style="-fx-background-color: lightblue; -fx-text-fill: white;">
+            <graphic>
+               <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                  <image>
+                     <Image url="@imgMenu/IconFile.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="buttonMap" mnemonicParsing="false" onMousePressed="#showMap" styleClass="menu buttonMap" style="-fx-background-color: lightblue; -fx-text-fill: white;">
+            <graphic>
+               <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                  <image>
+                     <Image url="@imgMenu/IconMap.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="buttonDashboard" mnemonicParsing="false" onMousePressed="#showDashboard" styleClass="menu buttonDashboard" style="-fx-background-color: lightblue; -fx-text-fill: white;">
+            <graphic>
+               <ImageView fitHeight="50" fitWidth="50" smooth="true">
+                  <image>
+                     <Image url="@imgMenu/IconDashboard.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
          <padding>
             <Insets top="50.0" />
          </padding>
@@ -53,7 +55,7 @@
    </left>
    <center>
       <AnchorPane>
-         <AnchorPane fx:id="file">
+         <AnchorPane fx:id="file" visible="false">
             <VBox alignment="CENTER" layoutX="-1.0" onDragDropped="#dragDropped" onDragExited="#dragExited" onDragOver="#dragOver" spacing="20">
                <children>
                   <ImageView fitHeight="250" fitWidth="250" preserveRatio="true" smooth="true">
@@ -69,21 +71,23 @@
                   <Button fx:id="parcourir" onAction="#importCSV" text="Parcourir">
                      <VBox.margin>
                         <Insets top="15.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </AnchorPane>
 
-         <AnchorPane fx:id="drag">
+         <AnchorPane fx:id="drag" visible="false">
             <children>
                <Label text="drag" textFill="RED">
                   <font>
                      <Font size="96.0" />
-                  </font></Label>
+                  </font>
+               </Label>
             </children>
          </AnchorPane>
 
-         <AnchorPane fx:id="uploadFile">
+         <AnchorPane fx:id="uploadFile" visible="false">
             <VBox alignment="CENTER">
                <children>
                   <ImageView fitHeight="300" fitWidth="300" preserveRatio="true" smooth="true">
@@ -94,7 +98,8 @@
                   <Label fx:id="fileName" style="-fx-font-size: 30; -fx-text-fill: #2A3542;" text="">
                      <VBox.margin>
                         <Insets bottom="100.0" />
-                     </VBox.margin></Label>
+                     </VBox.margin>
+                  </Label>
                   <HBox alignment="CENTER" spacing="100">
                      <children>
                         <Button onAction="#delFile" styleClass="buttonFile" text="Supprimer" />
@@ -105,7 +110,7 @@
             </VBox>
          </AnchorPane>
 
-         <AnchorPane fx:id="map">
+         <AnchorPane fx:id="map" visible="false">
             <VBox prefHeight="1080.0" prefWidth="1920.0">
                <children>
                   <MapView fx:id="mapView" VBox.vgrow="ALWAYS" />
@@ -113,8 +118,47 @@
             </VBox>
          </AnchorPane>
 
-         <AnchorPane fx:id="dashboard">
+         <AnchorPane fx:id="dashboard" styleClass="dashboard">
+            <VBox alignment="CENTER" prefHeight="800.0" prefWidth="1500.0" spacing="20">
+               <LineChart title="Evolution dans le temps" styleClass="chart-title" prefHeight="300.0" prefWidth="600.0">
+                  <xAxis>
+                     <CategoryAxis side="BOTTOM" />
+                  </xAxis>
+                  <yAxis>
+                     <NumberAxis side="LEFT" />
+                  </yAxis>
+               </LineChart>
+               <StackedBarChart title="Magnitude des Séismes" styleClass="chart-title" prefHeight="300.0" prefWidth="600.0">
+                  <xAxis>
+                     <CategoryAxis side="BOTTOM" />
+                  </xAxis>
+                  <yAxis>
+                     <NumberAxis side="LEFT" />
+                  </yAxis>
+               </StackedBarChart>
+               <HBox alignment="CENTER" spacing="20">
+                  <BarChart title="Plus Gros Séisme" styleClass="chart-title" prefHeight="300.0" prefWidth="200.0">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </BarChart>
+                  <BarChart title="Plus Petit Séisme" styleClass="chart-title" prefHeight="300.0" prefWidth="200.0">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </BarChart>
+               </HBox>
+               <Label fx:id="seismesLabel" styleClass="label-title" />
+            </VBox>
          </AnchorPane>
+
+
       </AnchorPane>
    </center>
 </BorderPane>
