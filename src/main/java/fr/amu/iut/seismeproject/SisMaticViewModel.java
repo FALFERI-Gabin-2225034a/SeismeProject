@@ -134,22 +134,22 @@ public class SisMaticViewModel {
         return dataCoords;
     }
 
-    public ArrayList<Double> getDataIntensity() {
-        ArrayList<Double> dataIntensity = new ArrayList<>();
-        for (String intensity : model.getData().get("Intensité épicentrale")) {
+    public ArrayList<Double> getDataDouble(String columnName) {
+        ArrayList<Double> dataDouble = new ArrayList<>();
+        for (String intensity : model.getData().get(columnName)) {
             if (!intensity.isEmpty()) {
-                dataIntensity.add(Double.parseDouble(intensity));
+                dataDouble.add(Double.parseDouble(intensity));
             }
             else {
-                dataIntensity.add(null);
+                dataDouble.add(null);
             }
         }
-        return dataIntensity;
+        return dataDouble;
     }
 
     public void placeEpicentre(MapView mapView) {
         ArrayList<Coords> dataCoords = getDataCoords();
-        ArrayList<Double> dataIntensity = getDataIntensity();
+        ArrayList<Double> dataIntensity = getDataDouble("Intensité épicentrale");
         for (int i = 0 ; i < dataCoords.size() ; i++) {
             if(dataCoords.get(i) != null) {
                 MapLayer mapLayer = new CustomMarkerLayer(new MapPoint(dataCoords.get(i).getX(), dataCoords.get(i).getY()), dataIntensity.get(i));
