@@ -77,16 +77,6 @@
             </VBox>
          </AnchorPane>
 
-         <AnchorPane fx:id="drag" visible="false">
-            <children>
-               <Label text="drag" textFill="RED">
-                  <font>
-                     <Font size="96.0" />
-                  </font>
-               </Label>
-            </children>
-         </AnchorPane>
-
          <AnchorPane fx:id="uploadFile" visible="false">
             <VBox alignment="CENTER">
                <children>

@@ -38,8 +38,6 @@ public class SisMaticView implements Initializable {
     @FXML
     private Label fileName;
     @FXML
-    private AnchorPane drag;
-    @FXML
     private AnchorPane map;
     @FXML
     private MapView mapView;
@@ -120,6 +118,7 @@ public class SisMaticView implements Initializable {
         map.setDisable(false);
         dashboard.setVisible(false);
         dashboard.setDisable(true);
+
     }
 
     @FXML
@@ -149,19 +148,19 @@ public class SisMaticView implements Initializable {
 
     @FXML
     private void dragOver(DragEvent event) {
-        //drag.setVisible(true);
+        file.setStyle("-fx-background-color: #2A3542; -fx-opacity: 50%;");
         viewModel.handleDragOver(event);
     }
 
     @FXML
     private void dragExited(DragEvent event) {
-        //drag.setVisible(false);
+        file.setStyle("-fx-background-color: #E9FDFC; -fx-opacity: 100%;");
         event.consume();
     }
 
     @FXML
     private void dragDropped(DragEvent event) throws IOException {
-        //drag.setVisible(false);
+        file.setStyle("-fx-background-color: #E9FDFC; -fx-opacity: 100%;");
         viewModel.handleDragDropped(event);
         if(viewModel.handleDragDropped(event)) {
             this.showUploadFile();
@@ -211,7 +210,6 @@ public class SisMaticView implements Initializable {
         map.setDisable(true);
         dashboard.setVisible(false);
         dashboard.setDisable(true);
-        drag.setVisible(false);
         uploadFile.setVisible(false);
         uploadFile.setDisable(true);
         initMap();
